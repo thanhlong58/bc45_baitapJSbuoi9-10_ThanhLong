@@ -98,8 +98,8 @@ document.querySelector('#btnThemNV').onclick = function () {
             valid = kiemTraRong(nv.hoVaTen, hoVaTenNV.id, pHoVaTenNV)
             hoVaTenNV.style.display = 'block';
             testName.style.display = 'none';
-        } else {
-            valid = kiemTraTen(nv.hoVaTen, testName.id)
+        } else {var nameCheck = true;
+           nameCheck = valid = kiemTraTen(nv.hoVaTen, testName.id)
             hoVaTenNV.style.display = 'none';
             testName.style.display = 'block';
         }
@@ -128,7 +128,8 @@ document.querySelector('#btnThemNV').onclick = function () {
             testEmail.style.display = 'none';
 
         } else {
-            valid = kiemTraEmail(nv.email, testEmail.id)
+            var emailCheck = true
+          emailCheck =  valid = kiemTraEmail(nv.email, testEmail.id)
             emailNV.style.display = 'none';
             testEmail.style.display = 'block';
 
@@ -140,7 +141,8 @@ document.querySelector('#btnThemNV').onclick = function () {
             matKhauNV.style.display = 'block';
             testMatKhau.style.display = 'none'
         } else {
-            valid = kiemtraMatKhau(nv.matKhau, testMatKhau.id);
+            var passWordCheck = true;
+          passWordCheck =  valid = kiemtraMatKhau(nv.matKhau, testMatKhau.id);
             matKhauNV.style.display = 'none';
             testMatKhau.style.display = 'block'
 
@@ -152,7 +154,8 @@ document.querySelector('#btnThemNV').onclick = function () {
             testNgayLam.style.display = 'none'
 
         } else {
-            valid = kiemTraNgayLam(nv.ngayLam, testNgayLam.id);
+            var dayWorked = true
+           dayWorked =  valid = kiemTraNgayLam(nv.ngayLam, testNgayLam.id);
             ngayLamNV.style.display = 'none';
             testNgayLam.style.display = 'block'
 
@@ -164,8 +167,8 @@ document.querySelector('#btnThemNV').onclick = function () {
             luongCbNV.style.display = 'block'
             testLuongCB.style.display = 'none'
 
-        } else {
-            valid = kiemTraKhoang(nv.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
+        } else {var salaryCheck = true;
+           salaryCheck = valid = kiemTraKhoang(nv.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
             luongCbNV.style.display = 'none'
             testLuongCB.style.display = 'block';
 
@@ -187,14 +190,14 @@ document.querySelector('#btnThemNV').onclick = function () {
             valid = kiemTraRong(nv.gioLamChuoi, gioLamNV.id, pGioLamNV)
             gioLamNV.style.display = 'block'
             testGioLam.style.display = 'none'
-        } else {
-            valid = kiemTraKhoang(nv.gioLam, testGioLam.id, 80, 200);
+        } else { var hoursWorked = true
+          hoursWorked =  valid = kiemTraKhoang(nv.gioLam, testGioLam.id, 80, 200);
             gioLamNV.style.display = 'none'
             testGioLam.style.display = 'block'
 
         }
     }
-    if (!valid || !idCheck) {
+    if (!valid || !idCheck || !nameCheck || !hoursWorked || !salaryCheck|| !passWordCheck || !emailCheck || !dayWorked ) {
         return;
     }
 
@@ -220,6 +223,7 @@ document.querySelector('#btnThemNV').onclick = function () {
     renderNhanVien(arrNhanVien);
     //reset form khi thêm nhân viên thành công
     document.querySelector('#formThemSinhVien').reset();
+    document.querySelector('#btnCapNhat').disabled = true;
 
 }
 
@@ -406,6 +410,7 @@ document.querySelector('#btnCapNhat').onclick = function () {
 
     var chucVuNV = document.getElementById('pchucvu')
     //kiểm tra tên
+    var secondPhase = true;
     if (valid) {
         if (nvMang.hoVaTen === '') {
             valid = kiemTraRong(nvMang.hoVaTen, hoVaTenNV.id, pHoVaTenNV)
@@ -414,8 +419,8 @@ document.querySelector('#btnCapNhat').onclick = function () {
 
 
         } else {
-            var nameCheck = true;
-           nameCheck = valid = kiemTraTen(nvMang.hoVaTen, testName.id)
+            
+            nameCheck = valid = kiemTraTen(nvMang.hoVaTen, testName.id)
             hoVaTenNV.style.display = 'none';
             testName.style.display = 'block';
 
