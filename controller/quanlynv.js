@@ -114,7 +114,7 @@ document.querySelector('#btnThemNV').onclick = function () {
 
         } else {
             var idCheck = true;
-           idCheck =  valid = kiemTraSo(nv.taiKhoan, testTK.id)& kiemTraDoDai(nv.taiKhoan, testDoDaiTK.id, 4);
+            idCheck = valid = kiemTraSo(nv.taiKhoan, testTK.id) & kiemTraDoDai(nv.taiKhoan, testDoDaiTK.id, 4);
             taiKhoanNV.style.display = 'none';
             testTK.style.display = 'block';
             testDoDaiTK.style.display = 'block';
@@ -414,7 +414,8 @@ document.querySelector('#btnCapNhat').onclick = function () {
 
 
         } else {
-            valid = kiemTraTen(nvMang.hoVaTen, testName.id)
+            var nameCheck = true;
+           nameCheck = valid = kiemTraTen(nvMang.hoVaTen, testName.id)
             hoVaTenNV.style.display = 'none';
             testName.style.display = 'block';
 
@@ -494,7 +495,7 @@ document.querySelector('#btnCapNhat').onclick = function () {
         }
 
     }
-    if (!valid) {
+    if (!valid || !nameCheck) {
         return;
     }
 
@@ -505,8 +506,8 @@ document.querySelector('#btnCapNhat').onclick = function () {
     for (var i = 0; i < inPutValue.length; i++) {
         if (inPutValue[i].value === '') {
             return;
-        }
 
+        }
     }
 
 
