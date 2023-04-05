@@ -407,14 +407,14 @@ document.querySelector('#btnCapNhat').onclick = function () {
     var chucVuNV = document.getElementById('pchucvu')
     //kiểm tra tên
     if (valid) {
-        if (nhanVienEdit.hoVaTen === '') {
-            valid = kiemTraRong(nhanVienEdit.hoVaTen, hoVaTenNV.id, pHoVaTenNV)
+        if (nvMang.hoVaTen === '') {
+            valid = kiemTraRong(nvMang.hoVaTen, hoVaTenNV.id, pHoVaTenNV)
             hoVaTenNV.style.display = 'block';
             testName.style.display = 'none';
 
 
         } else {
-            valid = kiemTraTen(nhanVienEdit.hoVaTen, testName.id)
+            valid = kiemTraTen(nvMang.hoVaTen, testName.id)
             hoVaTenNV.style.display = 'none';
             testName.style.display = 'block';
 
@@ -424,49 +424,49 @@ document.querySelector('#btnCapNhat').onclick = function () {
 
 
         //kiểm tra email
-        if (nhanVienEdit.email === '') {
-            valid = kiemTraRong(nhanVienEdit.email, emailNV.id, pEmail)
+        if (nvMang.email === '') {
+            valid = kiemTraRong(nvMang.email, emailNV.id, pEmail)
             emailNV.style.display = 'block';
             testEmail.style.display = 'none';
 
         } else {
-            valid = kiemTraEmail(nhanVienEdit.email, testEmail.id)
+            valid = kiemTraEmail(nvMang.email, testEmail.id)
             emailNV.style.display = 'none';
             testEmail.style.display = 'block';
 
         }
 
         //kiểm tra mật khẩu 
-        if (nhanVienEdit.matKhau === '') {
-            valid = kiemTraRong(nhanVienEdit.matKhau, matKhauNV.id, pMatKhauNV)
+        if (nvMang.matKhau === '') {
+            valid = kiemTraRong(nvMang.matKhau, matKhauNV.id, pMatKhauNV)
             matKhauNV.style.display = 'block';
             testMatKhau.style.display = 'none'
         } else {
-            valid = kiemtraMatKhau(nhanVienEdit.matKhau, testMatKhau.id);
+            valid = kiemtraMatKhau(nvMang.matKhau, testMatKhau.id);
             matKhauNV.style.display = 'none';
             testMatKhau.style.display = 'block'
 
         }
         //kiểm tra ngày làm 
-        if (nhanVienEdit.ngayLam === '') {
-            valid = kiemTraRong(nhanVienEdit.ngayLam, ngayLamNV.id, pNgayLamNV)
+        if (nvMang.ngayLam === '') {
+            valid = kiemTraRong(nvMang.ngayLam, ngayLamNV.id, pNgayLamNV)
             ngayLamNV.style.display = 'block';
             testNgayLam.style.display = 'none'
 
         } else {
-            valid = kiemTraNgayLam(nhanVienEdit.ngayLam, testNgayLam.id);
+            valid = kiemTraNgayLam(nvMang.ngayLam, testNgayLam.id);
             ngayLamNV.style.display = 'none';
             testNgayLam.style.display = 'block'
 
         }
         //kiểm tra lương cơ bản 
-        if (nhanVienEdit.LuongCoBanChuoi === '') {
-            valid = kiemTraRong(nhanVienEdit.LuongCoBanChuoi, luongCbNV.id, pLuongcbNV)
+        if (nvMang.LuongCoBanChuoi === '') {
+            valid = kiemTraRong(nvMang.LuongCoBanChuoi, luongCbNV.id, pLuongcbNV)
             luongCbNV.style.display = 'block'
             testLuongCB.style.display = 'none'
 
         } else {
-            valid = kiemTraKhoang(nhanVienEdit.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
+            valid = kiemTraKhoang(nvMang.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
             luongCbNV.style.display = 'none'
             testLuongCB.style.display = 'block';
 
@@ -482,12 +482,12 @@ document.querySelector('#btnCapNhat').onclick = function () {
         }
 
         //kiểm trá giờ làm 
-        if (nhanVienEdit.gioLamChuoi === '') {
-            valid = kiemTraRong(nhanVienEdit.gioLamChuoi, gioLamNV.id, pGioLamNV)
+        if (nvMang.gioLamChuoi === '') {
+            valid = kiemTraRong(nvMang.gioLamChuoi, gioLamNV.id, pGioLamNV)
             gioLamNV.style.display = 'block'
             testGioLam.style.display = 'none'
         } else {
-            valid = kiemTraKhoang(nhanVienEdit.gioLam, testGioLam.id, 80, 200);
+            valid = kiemTraKhoang(nvMang.gioLam, testGioLam.id, 80, 200);
             gioLamNV.style.display = 'none'
             testGioLam.style.display = 'block'
 
