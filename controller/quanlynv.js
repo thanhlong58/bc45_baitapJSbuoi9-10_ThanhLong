@@ -174,7 +174,9 @@ document.querySelector('#btnThemNV').onclick = function () {
 
         }
         //kiểm tra chức vụ 
+        var positionCheck = true
         if (viTriOpTion === 0) {
+            positionCheck = false;
             chucVuNV.innerHTML = 'Vui lòng chọn chức vụ'
             chucVuNV.style.display = 'block'
 
@@ -197,7 +199,7 @@ document.querySelector('#btnThemNV').onclick = function () {
 
         }
     }
-    if (!valid || !idCheck || !nameCheck || !hoursWorked || !salaryCheck|| !passWordCheck || !emailCheck || !dayWorked ) {
+    if (!valid || !idCheck || !nameCheck || !hoursWorked || !salaryCheck|| !passWordCheck || !emailCheck || !dayWorked ||!positionCheck ) {
         return;
     }
 
@@ -242,7 +244,7 @@ function renderNhanVien(arrNV) {
          <td>${nvNew.email}</td>
          <td>${nvNew.ngayLam}</td>
          <td>${nvNew.chucVu}</td>
-         <td>${nvNew.tinhTongLuong()}</td>
+         <td> ${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(nvNew.tinhTongLuong())} </td>
          <td id = "xepLoaiNV">${nvNew.xepLoai()}</td>
          <td><button class ="btn btn-success" onclick ="xoaNhanVien('${nvNew.taiKhoan}')">Xoá</button></td>
          <td><button class="btn btn-primary" data-toggle="modal"
@@ -325,11 +327,6 @@ function suaSinhVien(maNVCLick) {
         dateInput.value = dateInput.placeholder && '';
         document.querySelector('#tknv').value = arrNhanVien[indexSua].taiKhoan;
 
-
-
-
-
-
     }
     //ẩn hiện khi click vào nút chỉnh sửa
     document.querySelector('#btnThemNV').disabled = true;
@@ -359,6 +356,7 @@ document.querySelector('#btnCapNhat').onclick = function () {
     for (var index = 0; index < arrNhanVien.length; index++) {
         if (arrNhanVien[index].taiKhoan === nhanVienEdit.taiKhoan) {
             var nvMang = arrNhanVien[index];
+            nvMang.taiKhoan = nhanVienEdit.taiKhoan;
             nvMang.hoVaTen = nhanVienEdit.hoVaTen;
             nvMang.email = nhanVienEdit.email;
             nvMang.matKhau = nhanVienEdit.matKhau;
@@ -410,24 +408,18 @@ document.querySelector('#btnCapNhat').onclick = function () {
 
     var chucVuNV = document.getElementById('pchucvu')
     //kiểm tra tên
-    var secondPhase = true;
     if (valid) {
         if (nvMang.hoVaTen === '') {
             valid = kiemTraRong(nvMang.hoVaTen, hoVaTenNV.id, pHoVaTenNV)
             hoVaTenNV.style.display = 'block';
             testName.style.display = 'none';
-
-
-        } else {
-            
-            nameCheck = valid = kiemTraTen(nvMang.hoVaTen, testName.id)
+        } else {var nameCheck = true;
+           nameCheck = valid = kiemTraTen(nvMang.hoVaTen, testName.id)
             hoVaTenNV.style.display = 'none';
             testName.style.display = 'block';
-
-
         }
 
-
+        
 
         //kiểm tra email
         if (nvMang.email === '') {
@@ -436,7 +428,8 @@ document.querySelector('#btnCapNhat').onclick = function () {
             testEmail.style.display = 'none';
 
         } else {
-            valid = kiemTraEmail(nvMang.email, testEmail.id)
+            var emailCheck = true
+          emailCheck =  valid = kiemTraEmail(nvMang.email, testEmail.id)
             emailNV.style.display = 'none';
             testEmail.style.display = 'block';
 
@@ -448,7 +441,8 @@ document.querySelector('#btnCapNhat').onclick = function () {
             matKhauNV.style.display = 'block';
             testMatKhau.style.display = 'none'
         } else {
-            valid = kiemtraMatKhau(nvMang.matKhau, testMatKhau.id);
+            var passWordCheck = true;
+          passWordCheck =  valid = kiemtraMatKhau(nvMang.matKhau, testMatKhau.id);
             matKhauNV.style.display = 'none';
             testMatKhau.style.display = 'block'
 
@@ -460,9 +454,11 @@ document.querySelector('#btnCapNhat').onclick = function () {
             testNgayLam.style.display = 'none'
 
         } else {
-            valid = kiemTraNgayLam(nvMang.ngayLam, testNgayLam.id);
+            var dayWorked = true
+           dayWorked =  valid = kiemTraNgayLam(nvMang.ngayLam, testNgayLam.id);
             ngayLamNV.style.display = 'none';
             testNgayLam.style.display = 'block'
+
 
         }
         //kiểm tra lương cơ bản 
@@ -471,36 +467,40 @@ document.querySelector('#btnCapNhat').onclick = function () {
             luongCbNV.style.display = 'block'
             testLuongCB.style.display = 'none'
 
-        } else {
-            valid = kiemTraKhoang(nvMang.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
+        } else {var salaryCheck = true;
+           salaryCheck = valid = kiemTraKhoang(nvMang.LuongCoBan, testLuongCB.id, 1e+6, 2e+7);
             luongCbNV.style.display = 'none'
             testLuongCB.style.display = 'block';
 
         }
         //kiểm tra chức vụ 
+        var positionCheck = true
         if (viTriOpTion === 0) {
-            chucVuNV.innerHTML = 'Vui lòng chọn chức vụ'
+            positionCheck = false;
+            
+           chucVuNV.innerHTML = 'Vui lòng chọn chức vụ'
             chucVuNV.style.display = 'block'
+
 
         } else {
             chucVuNV.style.display = 'none'
 
+
         }
 
-        //kiểm trá giờ làm 
+        //kiểm tra giờ làm 
         if (nvMang.gioLamChuoi === '') {
             valid = kiemTraRong(nvMang.gioLamChuoi, gioLamNV.id, pGioLamNV)
             gioLamNV.style.display = 'block'
             testGioLam.style.display = 'none'
-        } else {
-            valid = kiemTraKhoang(nvMang.gioLam, testGioLam.id, 80, 200);
+        } else { var hoursWorked = true
+          hoursWorked =  valid = kiemTraKhoang(nvMang.gioLam, testGioLam.id, 80, 200);
             gioLamNV.style.display = 'none'
             testGioLam.style.display = 'block'
 
         }
-
     }
-    if (!valid || !nameCheck) {
+    if (!valid  || !nameCheck || !hoursWorked || !salaryCheck|| !passWordCheck || !emailCheck || !dayWorked || !positionCheck) {
         return;
     }
 
@@ -511,14 +511,9 @@ document.querySelector('#btnCapNhat').onclick = function () {
     for (var i = 0; i < inPutValue.length; i++) {
         if (inPutValue[i].value === '') {
             return;
-
         }
+
     }
-
-
-
-
-
 
     saveStorage();
     renderNhanVien(arrNhanVien);

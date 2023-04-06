@@ -27,13 +27,3 @@
   cursor: pointer;
   color: grey;
 }
-
-
-#btnReset {
-  font-size: 15px;
-    position: relative;
-    top: -60px;
-    left: 20px;
-
-
-}
